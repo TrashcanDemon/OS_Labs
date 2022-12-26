@@ -1,12 +1,14 @@
-project = grep
-flags = ad
-file = file.txt
+TARGET = grep
+FILE = file.txt
+FLAGS = ad
 
-$(project): main.c
-	gcc main.c -o $(project) -Wall
+all: $(TARGET)
 
-run: $(project)
-	./$(project) $(flags) $(file)
+$(TARGET): main.c
+	gcc $< -o $@ -Wall -Werror -Wextra
+
+run:
+	./$(TARGET) $(FLAGS) $(FILE)
 
 clean:
-	rm $(project)
+	rm $(TARGET)

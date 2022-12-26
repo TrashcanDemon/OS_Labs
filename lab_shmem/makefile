@@ -1,18 +1,18 @@
-project = fifo
+TARGET1 = writer
+TARGET2 = reader
 
-all: writer reader
+all: $(TARGET1) $(TARGET2)
 
+$(TARGET1): writer.c
+	gcc $< -o $@ -Wall -Werror -Wextra
 
-writer: writer.c
-	gcc writer.c -o writer -Wall
+$(TARGET2): reader.c
+	gcc $< -o $@ -Wall -Werror -Wextra
 
-reader: reader.c
-	gcc reader.c -o reader -Wall
-
-run: writer reader
-	./writer&
-	./reader
+run:
+	./$(TARGET1)
+	./$(TARGET2)
 
 clean:
-	rm writer
-	rm reader
+	rm $(TARGET1)
+	rm $(TARGET2)
